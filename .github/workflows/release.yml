@@ -1,7 +1,8 @@
 name: Release
 
-# Push a tag like v1.2.0 to build the plugin and publish a GitHub release
-# with the installable .streamDeckPlugin attached.
+# Builds the plugin and publishes a GitHub release with the installable
+# .streamDeckPlugin attached. Run it from the Actions tab ("Run workflow"),
+# or push a tag like v1.2.1. The version comes from package.json.
 on:
   push:
     tags: ["v*"]
@@ -29,10 +30,16 @@ jobs:
       - name: Validate
         run: npx streamdeck validate tools.quin.steamlibrary.sdPlugin
 
+      - name: Read version
+        id: ver
+        run: echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+
       - name: Publish release
-        if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: v${{ steps.ver.outputs.version }}
+          name: v${{ steps.ver.outputs.version }}
+          target_commitish: ${{ github.sha }}
           files: dist/tools.quin.steamlibrary.streamDeckPlugin
           body_path: .github/RELEASE_NOTES.md
           fail_on_unmatched_files: true
