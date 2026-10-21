@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Game Launcher for Steam</title>
+		<script src="sdpi-components.js"></script>
+	</head>
+	<body>
+		<sdpi-item label="Show">
+			<sdpi-select setting="mode" global default="favorites">
+				<option value="favorites">Favorites</option>
+				<option value="installed">Installed</option>
+				<option value="recent">Recently played</option>
+				<option value="all">All (installed + favorites)</option>
+			</sdpi-select>
+		</sdpi-item>
+
+		<sdpi-item label="Sort by">
+			<sdpi-select setting="sort" global default="recent">
+				<option value="recent">Last played</option>
+				<option value="name">Name (A-Z)</option>
+			</sdpi-select>
+		</sdpi-item>
+
+		<sdpi-item label="Favorites from">
+			<sdpi-select setting="favoritesCollection" global default="favorite" datasource="getCollections" show-refresh hot-reload>
+				<option value="favorite">Steam Favorites</option>
+			</sdpi-select>
+		</sdpi-item>
+
+		<sdpi-item label="Game names">
+			<sdpi-checkbox setting="showTitles" global label="Show name below artwork"></sdpi-checkbox>
+		</sdpi-item>
+
+		<sdpi-item label="After launch">
+			<sdpi-checkbox setting="returnAfterLaunch" global default="true" label="Return to previous profile"></sdpi-checkbox>
+		</sdpi-item>
+
+		<sdpi-item label="Steam folder">
+			<sdpi-textfield setting="steamPath" global placeholder="Automatic (registry)"></sdpi-textfield>
+		</sdpi-item>
+
+		<sdpi-item label="Library">
+			<sdpi-button onclick="SDPIComponents.streamDeckClient.send('sendToPlugin', { event: 'rescan' })">Rescan Steam</sdpi-button>
+		</sdpi-item>
+
+		<p style="color:#969696;font-size:9pt;margin:12px 8px;line-height:1.4">
+			Press this key to switch between Favorites, Installed, Recent and All. Hold it for a second to rescan Steam.
+			"Favorites from" can also be one of your own Steam collections.
+		</p>
+	</body>
+</html>

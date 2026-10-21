@@ -1,0 +1,146 @@
+{
+	"Name": "Game Launcher for Steam",
+	"Version": "1.2.0.0",
+	"Author": "quin.tools",
+	"Description": "Turns your Stream Deck into a launcher for your Steam library. One key fills the whole deck with your favorite, installed or recently played games; press a game to start it.",
+	"Category": "Game Launcher for Steam",
+	"CategoryIcon": "imgs/plugin/category-icon",
+	"Icon": "imgs/plugin/marketplace",
+	"CodePath": "bin/plugin.js",
+	"UUID": "tools.quin.steamlibrary",
+	"SDKVersion": 3,
+	"Software": {
+		"MinimumVersion": "7.1"
+	},
+	"OS": [
+		{
+			"Platform": "windows",
+			"MinimumVersion": "10"
+		}
+	],
+	"Nodejs": {
+		"Version": "24"
+	},
+	"Actions": [
+		{
+			"Name": "Open Game Launcher",
+			"UUID": "tools.quin.steamlibrary.open",
+			"Icon": "imgs/actions/open/icon",
+			"Tooltip": "Fills your whole Stream Deck with your Steam games. Put this key on your normal profile.",
+			"Controllers": [
+				"Keypad"
+			],
+			"SupportedInMultiActions": true,
+			"States": [
+				{
+					"Image": "imgs/actions/open/key",
+					"ShowTitle": false
+				}
+			]
+		},
+		{
+			"Name": "Game Slot",
+			"UUID": "tools.quin.steamlibrary.slot",
+			"Icon": "imgs/actions/slot/icon",
+			"Tooltip": "One tile in the game grid. Place as many as you like; they fill left to right, top to bottom.",
+			"Controllers": [
+				"Keypad"
+			],
+			"SupportedInMultiActions": false,
+			"States": [
+				{
+					"Image": "imgs/actions/slot/key",
+					"TitleAlignment": "bottom",
+					"FontSize": 9,
+					"ShowTitle": true
+				}
+			]
+		},
+		{
+			"Name": "Next Page",
+			"UUID": "tools.quin.steamlibrary.next",
+			"Icon": "imgs/actions/next/icon",
+			"Tooltip": "Show the next page of games.",
+			"Controllers": [
+				"Keypad"
+			],
+			"SupportedInMultiActions": false,
+			"States": [
+				{
+					"Image": "imgs/actions/next/key",
+					"ShowTitle": false
+				}
+			]
+		},
+		{
+			"Name": "Previous Page",
+			"UUID": "tools.quin.steamlibrary.prev",
+			"Icon": "imgs/actions/prev/icon",
+			"Tooltip": "Show the previous page of games.",
+			"Controllers": [
+				"Keypad"
+			],
+			"SupportedInMultiActions": false,
+			"States": [
+				{
+					"Image": "imgs/actions/prev/key",
+					"ShowTitle": false
+				}
+			]
+		},
+		{
+			"Name": "Filter & Settings",
+			"UUID": "tools.quin.steamlibrary.filter",
+			"Icon": "imgs/actions/filter/icon",
+			"Tooltip": "Press: switch between Favorites, Installed, Recent and All. Hold: rescan your Steam library.",
+			"PropertyInspectorPath": "ui/filter.html",
+			"Controllers": [
+				"Keypad"
+			],
+			"SupportedInMultiActions": false,
+			"States": [
+				{
+					"Image": "imgs/actions/filter/key",
+					"ShowTitle": false
+				}
+			]
+		},
+		{
+			"Name": "Back",
+			"UUID": "tools.quin.steamlibrary.back",
+			"Icon": "imgs/actions/back/icon",
+			"Tooltip": "Return to your previous profile.",
+			"Controllers": [
+				"Keypad"
+			],
+			"SupportedInMultiActions": false,
+			"States": [
+				{
+					"Image": "imgs/actions/back/key",
+					"ShowTitle": false
+				}
+			]
+		}
+	],
+	"Profiles": [
+		{
+			"Name": "profiles/Game Launcher (Stream Deck)",
+			"DeviceType": 0,
+			"Readonly": false,
+			"DontAutoSwitchWhenInstalled": true
+		},
+		{
+			"Name": "profiles/Game Launcher (Stream Deck Mini)",
+			"DeviceType": 1,
+			"Readonly": false,
+			"DontAutoSwitchWhenInstalled": true
+		},
+		{
+			"Name": "profiles/Game Launcher (Stream Deck XL)",
+			"DeviceType": 2,
+			"Readonly": false,
+			"DontAutoSwitchWhenInstalled": true
+		}
+	],
+	"URL": "https://quin.tools/game-launcher/"
+}
