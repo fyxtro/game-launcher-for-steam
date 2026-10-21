@@ -1,0 +1,38 @@
+name: Release
+
+# Push a tag like v1.2.0 to build the plugin and publish a GitHub release
+# with the installable .streamDeckPlugin attached.
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build and pack
+        run: npm run pack
+
+      - name: Validate
+        run: npx streamdeck validate tools.quin.steamlibrary.sdPlugin
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/tools.quin.steamlibrary.streamDeckPlugin
+          body_path: .github/RELEASE_NOTES.md
+          fail_on_unmatched_files: true

@@ -101,6 +101,8 @@ tools/build-profiles.mjs  generates the .streamDeckProfile files
 marketplace/              listing text, privacy policy, thumbnail and gallery images
 ```
 
+Releasing: update `Version` in the manifest, edit `.github/RELEASE_NOTES.md`, then push a tag (`git tag v1.2.1 && git push origin v1.2.1`). GitHub Actions builds the plugin and publishes the release with the `.streamDeckPlugin` attached.
+
 When changing a profile layout after release: Stream Deck installs a bundled profile only once per file name. Bump `REVISION` in `tools/build-profiles.mjs` so the new layout is picked up.
 
 Logs: `%appdata%\Elgato\StreamDeck\Plugins\tools.quin.steamlibrary.sdPlugin\logs`.
